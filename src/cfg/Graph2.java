@@ -8,6 +8,9 @@ public class Graph2 {
 	public ArrayList<String>lines;
 	public static char nodeName = 'A';
 	public static int lineNo =0;
+	public static int edges=0, vertices=0;
+	ArrayList<ArrayList<Node>>path = new ArrayList<>();
+
 
 	public Graph2(ArrayList<String>lines) {
 		this.lines = lines;
@@ -31,15 +34,15 @@ public class Graph2 {
 	public ArrayList<Character> printChild(Node node)
 	{
 		ArrayList<Character> nodes = new ArrayList<>();
-		System.out.print(node.nodeName+"-->(");
+		//System.out.print(node.nodeName+"-->(");
 		for(int i=0;i<node.childs.size();i++){
-			System.out.print(node.childs.get(i).nodeName);
-			if(node.childs.size() - i >1)System.out.print(",");
+			//System.out.print(node.childs.get(i).nodeName);
+			//if(node.childs.size() - i >1)System.out.print(",");
 			nodes.add(node.childs.get(i).nodeName);
 		}
-		System.out.println(")");
-		System.out.print(node.nodeName);
-		System.out.println(node.lines);
+	//	System.out.println(")");
+	//	System.out.print(node.nodeName);
+	//	System.out.println(node.lines);
 		return nodes;
 	}
 
@@ -48,6 +51,7 @@ public class Graph2 {
 		Node root = new Node(Graph2.nodeName,0);
 		Graph2.nodeName++;
 		buildChild(root, true);
+		ArrayList<Node>N = new ArrayList<>();
 
 		ArrayList<Node>visited = new ArrayList<>();
 		HashMap<Character, ArrayList<Character>> table = new HashMap<>();
@@ -60,52 +64,63 @@ public class Graph2 {
 		printMatrix(arr);
 		int cyclomaticComplexity = 0;
 		System.out.println();
-		System.out.println("Indepent paths:");
-		cyclomaticComplexity = findPaths(root,"",cyclomaticComplexity);
+
+
+		findPaths(root,"",new ArrayList<Node>());
+//		for(int i=0;i< path.size();i++){
+//			N = path.get(i);
+//			for(int j=0;j<N.size();j++) {
+//				System.out.print(N.get(j).nodeName);
+//			}
+//			System.out.println();
+//		}
 
 		System.out.println();
+		cyclomaticComplexity = edges-vertices+2;
 		System.out.println("The cyclomatic complexity: "+cyclomaticComplexity);
+		PathCoverage p = new PathCoverage(lines, path);
 
 		return root;
 	}
 
-	private int findPaths(Node root, String string, int cyclomaticComplexity)
+	private void  findPaths(Node root, String string, ArrayList<Node>N)
 	{
 		boolean isLoop = false;
+
 		if(string.contains(String.valueOf( root.nodeName))) isLoop = true;
-		string =string.concat(String.valueOf(root.nodeName));
+		string = string.concat(String.valueOf(root.nodeName));
+		N.add(root);
+
+
 		if(root.childs.isEmpty()){
-			System.out.println(string);
-			cyclomaticComplexity++;
+
+			path.add(N);
+			N = new ArrayList<>();
+
 		}
-		else string = string.concat("-->");
+
 		ArrayList<Node>childs = root.childs;
 		Node current;
 
 		for(int i=0;i<childs.size();i++){
 			current = childs.get(i);
 			if(!string.contains(String.valueOf( current.nodeName)) || !isLoop)
-				cyclomaticComplexity = Math.max(cyclomaticComplexity, findPaths(current,string,cyclomaticComplexity));
+				findPaths(current,string,new ArrayList<>(N));
 		}
-		return cyclomaticComplexity;
+
 	}
 
 
 	private void printMatrix(int[][] arr)
 	{
-		System.out.print("\t");
-		char c = 'A';
-		for(int i =0;i<arr.length;i++){
-			c = (char) ('A' + i);
-			System.out.print(c);
-			System.out.print("\t");
-		}
-		System.out.println();
-		for(int i = 0;i<arr.length;i++){
-			char ch = (char) ('A' +i);
-			System.out.print(ch);
-			for(int j =0;j<arr.length;j++){
-				System.out.print("\t"+arr[i][j]);
+		vertices = arr.length;
+		for(int i=0;i< arr.length;i++){
+			for(int j=0;j<arr.length;j++){
+				System.out.print(arr[i][j]+" ");
+				if(arr[i][j] == 1){
+					edges++;
+				}
+
 			}
 			System.out.println();
 		}

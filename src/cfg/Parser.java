@@ -11,6 +11,7 @@ public class Parser {
 
     ArrayList<String> lines = new ArrayList<>();
     ArrayList<Variable> vars = new ArrayList<>();
+    String error = "";
 	public Parser(String path) throws IOException {
 
 		FileReader fileReader = 
@@ -44,8 +45,8 @@ public class Parser {
             for( i=0;i<lines.size();i++){
                 System.out.println("lines"+ i+" : "+ lines.get(i));
             }
-            variableParser();
-        System.out.println("vars");
+           // variableParser();
+      //  System.out.println("vars");
 
             for( i=0;i<vars.size();i++) {
                 Variable v = vars.get(i);
@@ -58,12 +59,12 @@ public class Parser {
                 }
             }
             // Always close files.
-//            bufferedReader.close();
+           bufferedReader.close();
 //
-//            Graph2 graph = new Graph2(lines);
-//            System.out.println();
-//            System.out.println("The graph:");
-//            graph.buildGraph();
+            Graph2 graph = new Graph2(lines);
+            System.out.println();
+
+            graph.buildGraph();
 	}
 
     public String checkCharAssignment(String line){
@@ -71,14 +72,14 @@ public class Parser {
         if(line.contains("=")){
             String temp[] = line.split("=");
             temp[1] =  temp[1].trim();
-            System.out.println(temp[1]);
+         //   System.out.println(temp[1]);
             for( int j=0;j<temp[1].length();j++) {
                 if(temp[1].charAt(j) == ';')
                     break;
                 else
                     res+=temp[1].charAt(j);
             }
-            System.out.println("res"+res);
+       //     System.out.println("res"+res);
             return res.substring(1,res.length()-1);
 
         }
@@ -90,14 +91,14 @@ public class Parser {
         if(line.contains("=")){
             String temp[] = line.split("=");
             temp[1] =  temp[1].trim();
-            System.out.println(temp[1]);
+          //  System.out.println(temp[1]);
             for( int j=0;j<temp[1].length();j++) {
                 if(temp[1].charAt(j) == ';')
                     break;
                 else
                     res+=temp[1].charAt(j);
             }
-            System.out.println("res"+res);
+          //  System.out.println("res"+res);
             return res;
 
         }
@@ -109,14 +110,14 @@ public class Parser {
 
         Matcher m = p.matcher(lines.get(i));
         if (m.find()) {
-            System.out.println("found");
+          //  System.out.println("found");
 
-            System.out.println(lines.get(i));
+       //     System.out.println(lines.get(i));
 
             if(lines.get(i).contains("int")){
                 String temp = lines.get(i);
                 int ind = lines.get(i).indexOf("int");
-                System.out.println(ind);
+             //   System.out.println(ind);
                 int j = ind+3;
                 for(;j<temp.length();j++){
                     if(temp.charAt(j)!= ' '){
@@ -149,7 +150,7 @@ public class Parser {
             if(lines.get(i).contains("char")){
                 String temp = lines.get(i);
                 int ind = lines.get(i).indexOf("char");
-                System.out.println(ind);
+            //    System.out.println(ind);
                 int j = ind+4;
                 for(;j<temp.length();j++){
                     if(temp.charAt(j)!= ' '){
@@ -182,7 +183,7 @@ public class Parser {
             if(lines.get(i).contains("float")){
                 String temp = lines.get(i);
                 int ind = lines.get(i).indexOf("float");
-                System.out.println(ind);
+             //   System.out.println(ind);
                 int j = ind+5;
                 for(;j<temp.length();j++){
                     if(temp.charAt(j)!= ' '){
@@ -214,7 +215,7 @@ public class Parser {
             if(lines.get(i).contains("double")){
                 String temp = lines.get(i);
                 int ind = lines.get(i).indexOf("double");
-                System.out.println(ind);
+              //  System.out.println(ind);
                 int j = ind+6;
                 for(;j<temp.length();j++){
                     if(temp.charAt(j)!= ' '){
@@ -254,14 +255,14 @@ public class Parser {
         Pattern p = Pattern.compile("(int|char|float|double)(.*)(\\[.*\\])");
         Matcher m = p.matcher(lines.get(i));
         if (m.find()) {
-            System.out.println("found");
+       //     System.out.println("found");
 
-            System.out.println(lines.get(i));
+        //    System.out.println(lines.get(i));
 
             if(lines.get(i).contains("int")){
                 String temp = lines.get(i);
                 int ind = lines.get(i).indexOf("int");
-                System.out.println(ind);
+              //  System.out.println(ind);
                 int j = ind+3;
                 for(;j<temp.length();j++){
                     if(temp.charAt(j)!= ' '){
@@ -294,7 +295,7 @@ public class Parser {
             if(lines.get(i).contains("char")){
                 String temp = lines.get(i);
                 int ind = lines.get(i).indexOf("char");
-                System.out.println(ind);
+               // System.out.println(ind);
                 int j = ind+4;
                 for(;j<temp.length();j++){
                     if(temp.charAt(j)!= ' '){
@@ -323,7 +324,7 @@ public class Parser {
             if(lines.get(i).contains("float")){
                 String temp = lines.get(i);
                 int ind = lines.get(i).indexOf("float");
-                System.out.println(ind);
+             //   System.out.println(ind);
                 int j = ind+5;
                 for(;j<temp.length();j++){
                     if(temp.charAt(j)!= ' '){
@@ -355,7 +356,7 @@ public class Parser {
             if(lines.get(i).contains("double")){
                 String temp = lines.get(i);
                 int ind = lines.get(i).indexOf("double");
-                System.out.println(ind);
+           //     System.out.println(ind);
                 int j = ind+6;
                 for(;j<temp.length();j++){
                     if(temp.charAt(j)!= ' '){
@@ -416,7 +417,7 @@ public class Parser {
             temp[1] =  temp[1].trim();
 
             String temp_1 = "";
-            System.out.println(temp[1]);
+         //   System.out.println(temp[1]);
             for( int j=0;j<temp[1].length();j++) {
                 if(temp[1].charAt(j) != '{' && temp[1].charAt(j) != '}' && temp[1].charAt(j) != ';') temp_1+=temp[1].charAt(j);
             }
@@ -429,20 +430,193 @@ public class Parser {
         return res;
     }
 
-    public void addVariablesDeclaration(int i) {
-        Pattern p = Pattern.compile("(.*)(\s)*(=)");
-        Matcher m = p.matcher(lines.get(i));
-        if (m.find()) {
-            System.out.println("found");
 
-            System.out.println(lines.get(i));
+    public ArrayVar getArrayVariableValue(String name){
+        ArrayVar v = null;
+        for(int i=0;i<vars.size();i++){
+            if(name.equals(vars.get(i).name)){
+
+                if(vars.get(i) instanceof ArrayVar ){
+                   v =  ((ArrayVar) vars.get(i));
+                }
+            }
+        }
+        return v;
+    }
+
+    public NonArrayVar  getVariableValue(String name){
+        NonArrayVar v = null;
+        for(int i=0;i<vars.size();i++){
+            if(name.equals(vars.get(i).name)){
+
+                if(vars.get(i) instanceof NonArrayVar ){
+                    v =  ((NonArrayVar) vars.get(i));
+                }
+            }
+        }
+        return v;
+    }
+
+    public boolean isEnclosedByQuotation(String str){
+        str = str.trim();
+        if(str.charAt(0)== '"' && str.charAt(str.length()-1) == '"') return true;
+        else return false;
+    }
+
+    public boolean isArray(String line){
+       if(line.contains("[")){
+           return true;
+       }
+       else return false;
+    }
+
+    public String getArrayName( String line){
+        line = line.trim();
+        String res = "";
+        for (int i=0;i<line.length();i++){
+            if(line.charAt(i)=='[') break;
+            else res+=line.charAt(i);
+        }
+        return res;
+    }
+
+    public int getArrayIndex(String line){
+        line = line.trim();
+        String res = "";
+        for (int i=0;i<line.length();i++){
+            if(line.charAt(i)=='[') {
+                i++;
+                while(line.charAt(i)!=']'){
+
+                    res+=line.charAt(i);
+                    i++;
+                }
+            }
+
+        }
+        if(isNumeric((res)))
+        return Integer.parseInt(res);
+        else return Integer.parseInt(getValue(res));
+    }
+
+    public String getValueOfArray(String line){
+        String res = "";
+        ArrayVar a = getArrayVariableValue(getArrayName(line));
+        if(a!=null) {
+            return a.getValue().get(getArrayIndex(line));
+           // System.out.println(a.getValue().get(getArrayIndex(line)));
+        }
+        return null;
+
+    }
+
+    public void setValueOfArray(String line, String value){
+        String res = "";
+        ArrayVar a = getArrayVariableValue(getArrayName(line));
+        if(a!=null) {
+            a.getValue().set(getArrayIndex(line), value);
+           // System.out.println("found array"+value);
+        }
+
+        System.out.println("array"+a.getValue().get(getArrayIndex(line)));
+
+
+
+    }
+
+
+    public boolean isAssignment(String line){
+        if(!(line.contains("int")|| line.contains("float") || line.contains("double") || line.contains("char"))) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isNumeric(String strNum) {
+        //strNum = strNum.substring(0,strNum.length()-1);
+        strNum = strNum.trim();
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+    public String getValue(String t){
+        for(int i=0;i<vars.size();i++){
+            if(vars.get(i).name.equals(t))
+                return ((NonArrayVar)vars.get(i)).value;
+        }
+        return null;
+    }
+
+    public void setVariableValue(String t, String value){
+
+        for(int i=0;i<vars.size();i++){
+            System.out.println(t + " "+ vars.get(i).name);
+            if(vars.get(i).name.equals(t)) {
+                System.out.println("wn");
+                ((NonArrayVar) vars.get(i)).setValue(value);
+                System.out.println("val " + ((NonArrayVar) vars.get(i)).value);
+                break;
+            }
 
         }
     }
 
+    public void addVariablesAssignment(int i) {
+       if(lines.get(i).contains("=")){
+           String line = lines.get(i);
+           String t[] = line.split("=");
+
+           t[1] = t[1].substring(0,t[1].length()-1);
+           t[1]=t[1].trim();
+           t[0] = t[0].trim();
+
+           if(isAssignment(t[0])) {
+               System.out.println("lines"+lines.get(i));
+               System.out.println("\n\n"+t[1]);
+               if (isArray(t[1])) {
+                   System.out.println("array\n\n");
+                   System.out.println(getValueOfArray(t[1]));
+                   if(isArray(t[0])){
+                       setValueOfArray(t[0], getValueOfArray(t[1]));
+                   }
+                   else{
+                       setVariableValue(t[0], getValueOfArray(t[1]));
+                   }
+
+               }
+               else if(isNumeric(t[1])){
+
+                   if(isArray(t[0])){
+
+                       setValueOfArray(t[0], t[1]);
+                   }
+                   else{
+                       setVariableValue(t[0], t[1]);
+                   }
+               }
+               else{
+                   if(isArray(t[0])){
+
+                       setValueOfArray(t[0], getValue(t[1]));
+                   }
+                   else{
+                       setVariableValue(t[0],getValue(t[1]));
+                   }
+               }
+
+           }
+       }
+    }
+
 
     public void variableParser(){
-        System.out.println("helloo");
+     //   System.out.println("helloo");
 
 
         for(int i=0;i<lines.size();i++){
@@ -462,7 +636,7 @@ public class Parser {
             else if(m1.find()){
                 addVariables(i);
             }
-
+            //addVariablesAssignment(i);
 //            if(Pattern.matches("(?:\\w+\\s+)([a-zA-Z_][a-zA-Z0-9_]*)", lines.get(i))){
 //                System.out.println(lines.get(i));
 //            }
@@ -473,6 +647,22 @@ public class Parser {
 //                System.out.println(lines.get(i));
 //            }
         }
+
+        for(int i=0;i<lines.size();i++) {
+
+            // addVariablesDeclaration(i);
+            //  addArray(i);
+
+
+
+
+            addVariablesAssignment(i);
+//            if(Pattern.matches("(?:\\w+\\s+)([a-zA-Z_][a-zA-Z0-9_]*)", lines.get(i))){
+//                System.out.println(lines.get(i));
+//            }
+        }
+
+
 //        boolean b = Pattern.matches(", "as");
 
     }

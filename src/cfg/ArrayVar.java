@@ -12,4 +12,11 @@ public class ArrayVar extends Variable {
         this.value = value;
     }
 
+    public ArrayList<String> getValue() {
+        return value;
+    }
+
+    public void setValue(ArrayList<String> value) {
+        this.value = value;
+    }
 }

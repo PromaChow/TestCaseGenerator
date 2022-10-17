@@ -7,7 +7,7 @@ public class Node {
 
 	public char nodeName;
 	public ArrayList<Node>childs = new ArrayList<>();
-	public HashSet<Integer>lines = new HashSet<Integer>(); 
+	public ArrayList<Integer>lines = new ArrayList<>();
 
 	public Node(char c, int line) {
 		this.nodeName = c;
