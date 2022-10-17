@@ -314,13 +314,9 @@ public class Parser {
                 }
                 //   System.out.println(name);
 
-                String t = checkCharAssignment(lines.get(i));
-                if(t!=null){
-                    vars.add(new NonArrayVar(name, true, "char", t));
-                }
-                else{
-                    vars.add(new NonArrayVar(name, true, "char"));
-                }
+                ArrayList t = checkCharArrayAssignment(lines.get(i));
+               // System.out.println("hello"+t.get(0));
+                vars.add(new ArrayVar(name, true, "char", t));
             }
 
 
@@ -396,6 +392,21 @@ public class Parser {
 
         }
 
+    }
+
+
+    public ArrayList checkCharArrayAssignment( String line){
+        ArrayList<String> res = new ArrayList<>();
+        if(line.contains("=")){
+            String temp[] = line.split("=");
+            temp[1] =  temp[1].trim();
+
+            res.add(temp[1].substring(1,temp[1].length()-1));
+//            System.out.println("asd");
+//            System.out.println(res.get(0));
+
+        }
+        return res;
     }
 
     public ArrayList checkArrayAssignment( String line){
