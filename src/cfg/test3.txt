@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+main()
+{ int i;
+ int j;
+  int k = 8;
+  double l = 9.0;
+  char o = "c";
+  float m = 3.9;
+  int p[10];
+  double asa[] = {1.5,2.5,3.5,4.5,5.6};
+  for (i=0 ; i<=N ; i++)
+  p[i] = 1;
+  for (i=2 ; i<=N ; i++)
+  {
+  k = p[i]; j=1;
+  while (a[p[j-1]] > a[k]) {
+  p[j] = p[j-1];
+  j--;
+  }
+  p[j]=k;
+  }
+}
