@@ -74,11 +74,12 @@ public class Graph2 {
 //			}
 //			System.out.println();
 //		}
+		new PathCoverage(lines,path).parseWhole();
 
 		System.out.println();
 		cyclomaticComplexity = edges-vertices+2;
 		System.out.println("The cyclomatic complexity: "+cyclomaticComplexity);
-		PathCoverage p = new PathCoverage(lines, path);
+		//PathCoverage p = new PathCoverage(lines, path);
 
 		return root;
 	}

@@ -43,21 +43,12 @@ public class Parser {
             }
 
             for( i=0;i<lines.size();i++){
-                System.out.println("lines"+ i+" : "+ lines.get(i));
+               // System.out.println("lines"+ i+" : "+ lines.get(i));
             }
            // variableParser();
       //  System.out.println("vars");
 
-            for( i=0;i<vars.size();i++) {
-                Variable v = vars.get(i);
-                if (v instanceof ArrayVar) {
-                    ArrayVar a = (ArrayVar)v;
-                    System.out.println(vars.get(i).type + " " + vars.get(i).name + " ");
-                    for(int j=0;j<a.value.size();j++){
-                        System.out.println(a.value.get(j));
-                    }
-                }
-            }
+
             // Always close files.
            bufferedReader.close();
 //
@@ -110,6 +101,8 @@ public class Parser {
 
         Matcher m = p.matcher(lines.get(i));
         if (m.find()) {
+            if(!lines.contains("printf"))
+            System.out.println("jell"+lines.get(i));
           //  System.out.println("found");
 
        //     System.out.println(lines.get(i));
@@ -577,11 +570,11 @@ public class Parser {
            t[0] = t[0].trim();
 
            if(isAssignment(t[0])) {
-               System.out.println("lines"+lines.get(i));
-               System.out.println("\n\n"+t[1]);
+              // System.out.println("lines"+lines.get(i));
+               //System.out.println("\n\n"+t[1]);
                if (isArray(t[1])) {
-                   System.out.println("array\n\n");
-                   System.out.println(getValueOfArray(t[1]));
+                  // System.out.println("array\n\n");
+                   //System.out.println(getValueOfArray(t[1]));
                    if(isArray(t[0])){
                        setValueOfArray(t[0], getValueOfArray(t[1]));
                    }
@@ -648,6 +641,17 @@ public class Parser {
 //            }
         }
 
+        for( int i=0;i<vars.size();i++) {
+            Variable v = vars.get(i);
+            if (v instanceof ArrayVar) {
+                ArrayVar a = (ArrayVar)v;
+                System.out.println(vars.get(i).type + " " + vars.get(i).name + " ");
+                for(int j=0;j<a.value.size();j++){
+                    System.out.println(a.value.get(j));
+                }
+            }
+        }
+
         for(int i=0;i<lines.size();i++) {
 
             // addVariablesDeclaration(i);
@@ -657,6 +661,8 @@ public class Parser {
 
 
             addVariablesAssignment(i);
+
+
 //            if(Pattern.matches("(?:\\w+\\s+)([a-zA-Z_][a-zA-Z0-9_]*)", lines.get(i))){
 //                System.out.println(lines.get(i));
 //            }

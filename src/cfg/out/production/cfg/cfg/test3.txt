@@ -2,14 +2,19 @@
 
 #include <stdio.h>
 
-int main( )
+main( )
 {
 	int num;
+	int k = 11;
 	scanf("%d", &num);
-
+    if(k>10){
 	if(num>=10){
 	    printf("The number is greater than 10 \n");
 	}
 	else
 	    printf("The number is less than 10");
+	    }
+	  else{
+	  printf("idk");
+	  }
 }
