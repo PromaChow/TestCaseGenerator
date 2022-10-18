@@ -34,15 +34,18 @@ public class Graph2 {
 	public ArrayList<Character> printChild(Node node)
 	{
 		ArrayList<Character> nodes = new ArrayList<>();
-		//System.out.print(node.nodeName+"-->(");
+		System.out.print(node.nodeName);
+		//System.out.print(node.lines);
+		System.out.print("->");
 		for(int i=0;i<node.childs.size();i++){
-			//System.out.print(node.childs.get(i).nodeName);
-			//if(node.childs.size() - i >1)System.out.print(",");
+			System.out.print(node.childs.get(i).nodeName);
+			//System.out.println(node.childs.get(i).lines);
+			if(node.childs.size() - i >1)System.out.print(",");
 			nodes.add(node.childs.get(i).nodeName);
 		}
-	//	System.out.println(")");
-	//	System.out.print(node.nodeName);
-	//	System.out.println(node.lines);
+		System.out.println();
+		System.out.print(node.nodeName);
+		System.out.println(node.lines);
 		return nodes;
 	}
 

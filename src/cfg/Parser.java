@@ -31,7 +31,7 @@ public class Parser {
                         for (int j = 0; j < pr.length; j++) {
 
                             lines.add(pr[j] + ";");
-                            //System.out.println((k++) + ":" + pr[j] + ";");
+                           // System.out.println((k++) + ":" + pr[j] + ";");
                         }
                     }
                     else
@@ -43,7 +43,7 @@ public class Parser {
             }
 
             for( i=0;i<lines.size();i++){
-               // System.out.println("lines"+ i+" : "+ lines.get(i));
+               System.out.println("lines"+ i+" : "+ lines.get(i));
             }
            // variableParser();
       //  System.out.println("vars");
@@ -102,7 +102,7 @@ public class Parser {
         Matcher m = p.matcher(lines.get(i));
         if (m.find()) {
             if(!lines.contains("printf"))
-            System.out.println("jell"+lines.get(i));
+           // System.out.println("jell"+lines.get(i));
           //  System.out.println("found");
 
        //     System.out.println(lines.get(i));
@@ -371,9 +371,9 @@ public class Parser {
 
                 ArrayList t = checkArrayAssignment(lines.get(i));
 
-                for( i=0;i<t.size();i++){
-                    System.out.println(t.get(i));
-                }
+//                for( i=0;i<t.size();i++){
+//                    System.out.println(t.get(i));
+//                }
                 if(t!=null){
                     vars.add(new ArrayVar(name, true, "double", t));
                 }
@@ -511,7 +511,7 @@ public class Parser {
            // System.out.println("found array"+value);
         }
 
-        System.out.println("array"+a.getValue().get(getArrayIndex(line)));
+       // System.out.println("array"+a.getValue().get(getArrayIndex(line)));
 
 
 
@@ -549,11 +549,11 @@ public class Parser {
     public void setVariableValue(String t, String value){
 
         for(int i=0;i<vars.size();i++){
-            System.out.println(t + " "+ vars.get(i).name);
+          //  System.out.println(t + " "+ vars.get(i).name);
             if(vars.get(i).name.equals(t)) {
-                System.out.println("wn");
+                //System.out.println("wn");
                 ((NonArrayVar) vars.get(i)).setValue(value);
-                System.out.println("val " + ((NonArrayVar) vars.get(i)).value);
+               // System.out.println("val " + ((NonArrayVar) vars.get(i)).value);
                 break;
             }
 

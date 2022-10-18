@@ -72,12 +72,39 @@ public class PathCoverage {
     public void parseLine(ArrayList<Integer> a) {
         ArrayList<String>in = new ArrayList<>();
         ArrayList<String>out = new ArrayList<>();
+
         //System.out.println(a.size());
         //  System.out.println(input);
         for (int i = 0; i < a.size(); i++) {
-
+            int lower, higher;
             String line = lines.get(a.get(i));
             //  System.out.println(line);
+            if(line.contains("for")){
+                String t[] = line.split(";");
+                System.out.println(t[0]);
+                String l[] = t[0].split("=");
+                System.out.println(l[1]);
+                String m[] = t[1].split("<");
+                System.out.println(m[1]);
+
+                if(t[2].contains("++")){
+                    System.out.println(t[2]);
+                    lower = Integer.parseInt(l[1]);
+                    higher = Integer.parseInt(m[1]);
+                    System.out.println("he");
+                    //System.out.println(lower+" "higher);
+                }
+
+                else if(t[2].contains("--")){
+                    System.out.println(t[2]);
+                    lower = Integer.parseInt(m[1]);
+                    higher = Integer.parseInt(l[1]);
+                }
+
+
+
+            }
+
             if (line.contains("if")) {
                 boolean elseVar = false;
                 if(lines.get(a.get(i+1)).contains("else")){
